@@ -11,12 +11,15 @@ while True:
     check, frame = video.read()
 
     # find face in the frame
-    faces = front_face_cascades.detectMultiScale(frame, scaleFactor=1.05, minNeighbors=7)
+    front_faces = front_face_cascades.detectMultiScale(frame, scaleFactor=1.05, minNeighbors=7)
+    profile_faces = smile_face_cascades.detectMultiScale(frame, scaleFactor=1.05, minNeighbors=7)
+
     
     # add rectangle in the matching area
-    for x,y,w,h in faces:
+    for x,y,w,h in profile_faces:
         frame = cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,0),6)
 
+    
     cv2.imshow("Capturing",frame)
     key = cv2.waitKey(1)
 
