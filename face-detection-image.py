@@ -3,8 +3,12 @@ import cv2
 
 front_face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
-img = cv2.imread("profile-pic.jpeg")
+video = cv2.VideoCapture(0)
+check, frame = video.read()
+
+img = frame
 gray_img = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+
 
 faces = front_face_cascade.detectMultiScale(gray_img,
                                             scaleFactor=1.2,
